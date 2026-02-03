@@ -1,0 +1,63 @@
+@using System.Security.Claims
+
+<section class="top-bar py-2 border-bottom bg-light">
+    <div class="container">
+        <div class="row align-items-center gy-2">
+
+            <!-- Logo -->
+            <div class="col-lg-2 col-sm-4 col-4">
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand fw-bold text-primary">
+                    <i class="fa-solid fa-truck-fast me-1"></i> E-Commerce
+                </a>
+            </div>
+
+            <!-- Arama Bar -->
+            <div class="col-lg-5 col-sm-8 col-8">
+                <form asp-controller="Urun" asp-action="List">
+                    <div class="input-group">
+                        <input name="q" value="@ViewData["q"]" type="text" placeholder="Anahtar kelime"
+                            class="form-control" />
+                        <button class="btn btn-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Kullanıcı / Sepet Butonları -->
+            <div class="col-lg-5 col-12 text-lg-end">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Admin" asp-action="Index" class="btn btn-danger me-1 mb-1 mb-lg-0">
+                            <i class="fa fa-lock me-1"></i> Admin
+                        </a>
+                    }
+
+                    <a asp-controller="Account" asp-action="EditUser" class="btn btn-outline-primary me-1 mb-1 mb-lg-0">
+                        <i class="fa fa-user me-1"></i> Hesabım
+                    </a>
+
+                    <a asp-controller="Account" asp-action="LogOut" class="btn btn-outline-primary me-1 mb-1 mb-lg-0">
+                        <i class="fa fa-sign-out-alt me-1"></i> Çıkış
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary me-1 mb-1 mb-lg-0">
+                        <i class="fa fa-user-plus me-1"></i> Üye Ol
+                    </a>
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary me-1 mb-1 mb-lg-0">
+                        <i class="fa fa-sign-in-alt me-1"></i> Giriş Yap
+                    </a>
+                }
+
+                <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-primary me-1 mb-1 mb-lg-0">
+                    <i class="fa fa-shopping-cart me-1"></i> Sepetim
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>

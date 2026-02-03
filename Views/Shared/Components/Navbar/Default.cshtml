@@ -1,0 +1,23 @@
+@model List<Kategori>
+<button class="btn btn-primary m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu"
+    aria-controls="sidebarMenu">
+    Menü
+</button>
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarMenuLabel">Kategoriler</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Kapat"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="list-group">
+            @foreach (var kategori in Model)
+            {
+                <li class="list-group-item"><a href="/urunler/@kategori.Url">@kategori.KategoriAdi</a></li>
+
+            }
+
+        </ul>
+    </div>
+</div>

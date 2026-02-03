@@ -1,0 +1,12 @@
+#Net
+
+bin/
+obj/
+
+#SQLite
+*.db
+
+# User-specific
+.vscode/
+
+appsettings.Development.json

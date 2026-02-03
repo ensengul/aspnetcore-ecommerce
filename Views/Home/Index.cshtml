@@ -1,0 +1,28 @@
+﻿@model List<Urun>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Bar {
+    @await Component.InvokeAsync("Navbar")
+}
+<section class="mt-3">
+    <div class="container">
+        <h3 class="h4 mb-1 mb-lg-3">Ürünler</h3>
+
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
+            @foreach (var urun in Model)
+            {
+                @await Html.PartialAsync("Partials/Site/_Uruns", urun)
+            }
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+@await Html.PartialAsync("Partials/Site/_Footer")

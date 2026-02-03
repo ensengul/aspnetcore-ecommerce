@@ -1,0 +1,13 @@
+@if (TempData["Mesaj"] != null)
+{
+    <div aria-live="polite" aria-atomic="true" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+
+        <div class="alert alert-success alert-dismissible fade show shadow" role="alert" style="min-width:300px;">
+            <strong>Bilgi</strong><br />
+            @TempData["Mesaj"]
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+
+}
