@@ -1,16 +1,14 @@
+namespace Ecommerce.Models;
 
 
-using Ecommerce.Models;
-
-public class DashBoard
+public class Dashboard
 {
-    private readonly DataContext _context;
+    public double Satis { get; set; }
 
-    public DashBoard(DataContext context)
-    {
-        _context = context;
-    }
+    public double Siparis { get; set; }
 
+    public int Urun { get; set; }
 
+    public List<Order> Orders { get; set; } = new();
 
 }

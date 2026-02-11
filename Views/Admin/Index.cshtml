@@ -1,3 +1,5 @@
+@model Dashboard
+
 @{
     Layout = "_AdminLayout";
 }
@@ -9,7 +11,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col">
                         <div class="fw-bold text-primary text-uppercase mb-1">Satış</div>
-                        <div class="h5 mb-0 fw-bold">40.000 ₺</div>
+                        <div class="h5 mb-0 fw-bold">@Model.Satis ₺</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -25,7 +27,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col">
                         <div class="fw-bold text-primary text-uppercase mb-1">Sipariş</div>
-                        <div class="h5 mb-0 fw-bold">125</div>
+                        <div class="h5 mb-0 fw-bold">@Model.Siparis</div>
                     </div>
                     <div class="col-auto">
                         <i class="fa-solid fa-truck fa-2x text-gray-300"></i>
@@ -41,7 +43,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col">
                         <div class="fw-bold text-primary text-uppercase mb-1">Ürün</div>
-                        <div class="h5 mb-0 fw-bold">215</div>
+                        <div class="h5 mb-0 fw-bold">@Model.Urun</div>
                     </div>
                     <div class="col-auto">
                         <i class="fa-solid fa-list fa-2x text-gray-300"></i>
@@ -51,21 +53,6 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col">
-                        <div class="fw-bold text-primary text-uppercase mb-1">Mesaj</div>
-                        <div class="h5 mb-0 fw-bold">432</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fa-solid fa-message fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="row">
@@ -88,76 +75,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>5</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @foreach (var item in Model.Orders)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.AdSoyad</td>
+                                    <td>@item.AraToplam() ₺</td>
+                                    <td>@item.SiparisTarihi</td>
+                                    <td>
+                                        <span class="badge bg-primary">Onay Bekliyor</span>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
                         </tbody>
                     </table>
                 </div>

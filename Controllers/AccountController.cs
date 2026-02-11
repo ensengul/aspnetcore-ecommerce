@@ -12,14 +12,16 @@ public class AccountController : Controller
 {
     private readonly SignInManager<AppUser> _signInManager;
     private readonly UserManager<AppUser> _userManager;
+    private readonly RoleManager<AppRole> _roleManager;
     private readonly DataContext _context;
     private readonly ICartService _cartService;
-    public AccountController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, DataContext context, ICartService cartService)
+    public AccountController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, DataContext context, ICartService cartService, RoleManager<AppRole> roleManager)
     {
         _signInManager = signInManager;
         _userManager = userManager;
         _context = context;
         _cartService = cartService;
+        _roleManager = roleManager;
     }
 
     public ActionResult Register()
@@ -43,6 +45,14 @@ public class AccountController : Controller
 
             if (result.Succeeded)
             {
+                var entity = await _roleManager.RoleExistsAsync("User");
+
+                if (!entity)
+                {
+                    var role = new AppRole { Name = "User" };
+                    await _roleManager.CreateAsync(role);
+                }
+
                 await _userManager.AddToRoleAsync(user, "User");
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
